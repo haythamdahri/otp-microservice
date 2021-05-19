@@ -8,6 +8,7 @@ public enum OtpState {
     SENT,
     VERIFIED,
     ALREADY_VERIFIED,
-    INVALID
+    INVALID,
+    BLOCKED
 
 }

@@ -17,9 +17,11 @@ public class AbstractEntity {
     protected Integer id;
 
     @CreationTimestamp
+    @Column(name = "TIMESTAMP")
     protected Date timestamp;
 
     @Version
+    @Column(name = "UPDATE_TIMESTAMP")
     protected Date updateTimestamp;
 
 

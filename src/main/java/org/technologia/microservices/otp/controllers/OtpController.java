@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.technologia.microservices.otp.dto.OtpRequestDTO;
 import org.technologia.microservices.otp.dto.OtpResponseDTO;
+import org.technologia.microservices.otp.dto.OtpVerificationRequestDTO;
 import org.technologia.microservices.otp.services.OtpService;
 
 /**
@@ -26,6 +27,11 @@ public class OtpController {
     @PostMapping(path = "/checking")
     public ResponseEntity<OtpResponseDTO> sendOtpToDevice(@RequestBody OtpRequestDTO otpRequest) {
         return ResponseEntity.ok(this.otpService.sendOtp(otpRequest));
+    }
+
+    @PostMapping(path = "/verification")
+    public ResponseEntity<OtpResponseDTO> verifyOtp(@RequestBody OtpVerificationRequestDTO otpVerificationRequest) {
+        return ResponseEntity.ok(this.otpService.verifyOtp(otpVerificationRequest));
     }
 
 }

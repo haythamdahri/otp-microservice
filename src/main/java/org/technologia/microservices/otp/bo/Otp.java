@@ -21,6 +21,9 @@ import java.io.Serializable;
 public class Otp extends AbstractEntity implements Serializable {
     private static final long serialVersionUID = 4598744356652139825L;
 
+    @Column(name = "ATTEMPTS")
+    private int attempts;
+
     @Column(name = "TRANSACTION_NUMBER")
     private String transactionNumber;
 
