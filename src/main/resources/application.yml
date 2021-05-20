@@ -37,6 +37,21 @@ spring:
         temp:
           use_jdbc_metadata_defaults: false
     show-sql: true
+  # =======================================================================
+  # MAILING CONFIG
+  # =======================================================================
+  mail:
+    host: smtp.gmail.com
+    password: caytmymzlhuzlisg
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    sender: HAYTHAM DAHRI
+    username: haytham.dahri@gmail.com
 
 org:
   technologia:

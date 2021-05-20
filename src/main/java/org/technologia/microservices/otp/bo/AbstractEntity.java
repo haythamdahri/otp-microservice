@@ -1,5 +1,6 @@
 package org.technologia.microservices.otp.bo;
 
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.Date;
  * @author Haytham DAHRI
  */
 @MappedSuperclass
+@Data
 public class AbstractEntity {
 
     @Id
@@ -23,6 +25,5 @@ public class AbstractEntity {
     @Version
     @Column(name = "UPDATE_TIMESTAMP")
     protected Date updateTimestamp;
-
 
 }

@@ -11,6 +11,8 @@ import org.technologia.microservices.otp.dto.OtpResponseDTO;
 import org.technologia.microservices.otp.dto.OtpVerificationRequestDTO;
 import org.technologia.microservices.otp.services.OtpService;
 
+import javax.mail.MessagingException;
+
 /**
  * @author Haytham DAHRI
  */

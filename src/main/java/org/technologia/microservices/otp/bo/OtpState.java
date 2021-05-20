@@ -9,6 +9,7 @@ public enum OtpState {
     VERIFIED,
     ALREADY_VERIFIED,
     INVALID,
-    BLOCKED
+    BLOCKED,
+    EXPIRED
 
 }

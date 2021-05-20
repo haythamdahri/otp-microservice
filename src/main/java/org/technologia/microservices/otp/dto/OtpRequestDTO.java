@@ -22,4 +22,7 @@ public class OtpRequestDTO implements Serializable {
     @JsonProperty("phone")
     private String phone;
 
+    @JsonProperty("email")
+    private String email;
+
 }
