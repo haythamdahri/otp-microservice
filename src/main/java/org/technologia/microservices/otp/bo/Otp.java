@@ -1,6 +1,6 @@
 package org.technologia.microservices.otp.bo;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -32,6 +32,7 @@ public class Otp extends AbstractEntity implements Serializable {
     private OtpState state;
 
     @Column(name = "CODE", updatable = false)
+    @JsonIgnore
     private String code;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH})

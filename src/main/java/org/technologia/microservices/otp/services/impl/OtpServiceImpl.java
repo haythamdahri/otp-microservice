@@ -1,6 +1,9 @@
 package org.technologia.microservices.otp.services.impl;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.technologia.microservices.otp.bo.Otp;
 import org.technologia.microservices.otp.bo.OtpState;
@@ -14,6 +17,7 @@ import org.technologia.microservices.otp.exceptions.NotFoundException;
 import org.technologia.microservices.otp.facades.AuthenticationFacade;
 import org.technologia.microservices.otp.generators.OtpGenerator;
 import org.technologia.microservices.otp.helpers.DateHelper;
+import org.technologia.microservices.otp.mappers.OtpProjection;
 import org.technologia.microservices.otp.services.OtpSenderService;
 import org.technologia.microservices.otp.services.OtpService;
 import org.technologia.microservices.otp.services.UserService;
@@ -41,6 +45,12 @@ public class OtpServiceImpl implements OtpService {
         this.otpGenerator = otpGenerator;
         this.dateHelper = dateHelper;
         this.otpSenderService = otpSenderService;
+    }
+
+    @Override
+    public Page<OtpProjection> getCurrentUserOtpOperations(int page, int size) {
+        var pageRequest = PageRequest.of(page, size, Sort.Direction.DESC, "timestamp");
+        return this.otpDAO.findByUserUsername(this.authenticationFacade.getAuthentication().getName(), pageRequest);
     }
 
     /**
@@ -124,5 +134,10 @@ public class OtpServiceImpl implements OtpService {
         this.otpDAO.save(otp);
         // Return Response
         return new OtpResponseDTO(otp.getTransactionNumber(), OtpState.VERIFIED, LocalDateTime.now());
+    }
+
+    @Override
+    public void deleteOtpOperation(int id) {
+        this.otpDAO.deleteById(id);
     }
 }
