@@ -48,9 +48,13 @@ public class OtpServiceImpl implements OtpService {
     }
 
     @Override
-    public Page<OtpProjection> getCurrentUserOtpOperations(int page, int size) {
+    public Page<OtpProjection> getCurrentUserOtpOperations(String search, int page, int size) {
         var pageRequest = PageRequest.of(page, size, Sort.Direction.DESC, "timestamp");
-        return this.otpDAO.findByUserUsername(this.authenticationFacade.getAuthentication().getName(), pageRequest);
+        // Check if search is present
+        if (StringUtils.isEmpty(search)) {
+            return this.otpDAO.findByUserUsername(this.authenticationFacade.getAuthentication().getName(), pageRequest);
+        }
+        return this.otpDAO.findByTransactionNumberAndUserUsername(search, this.authenticationFacade.getAuthentication().getName(), pageRequest);
     }
 
     /**

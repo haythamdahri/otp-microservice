@@ -23,4 +23,8 @@ public interface OtpDAO extends JpaRepository<Otp, Integer> {
     @Query(value = "SELECT o FROM Otp o WHERE o.user.username = :username")
     Page<OtpProjection> findByUserUsername(@Param("username") String username, @PageableDefault Pageable pageable);
 
+    @Query(value = "SELECT o FROM Otp o WHERE o.transactionNumber = :transactionNumber AND o.user.username = :username")
+    Page<OtpProjection> findByTransactionNumberAndUserUsername(@Param("transactionNumber") String transactionNumber,
+                                                               @Param("username") String username, @PageableDefault Pageable pageable);
+
 }

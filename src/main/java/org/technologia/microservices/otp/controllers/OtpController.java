@@ -39,10 +39,11 @@ public class OtpController {
     }
 
     @GetMapping(path = "/currentuser/operations")
-    public ResponseEntity<Page<OtpProjection>> getCurrentUserOtpOperations(@RequestParam(name = "page", defaultValue = "0") int page,
+    public ResponseEntity<Page<OtpProjection>> getCurrentUserOtpOperations(@RequestParam(name = "search", defaultValue = "") String search,
+                                                                           @RequestParam(name = "page", defaultValue = "0") int page,
                                                                            @RequestParam(name = "size", defaultValue = "20") int size) throws InterruptedException {
         Thread.sleep(5200L);
-        return ResponseEntity.ok(this.otpService.getCurrentUserOtpOperations(page, size));
+        return ResponseEntity.ok(this.otpService.getCurrentUserOtpOperations(search, page, size));
     }
 
 }

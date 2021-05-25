@@ -11,7 +11,7 @@ import org.technologia.microservices.otp.mappers.OtpProjection;
  */
 public interface OtpService {
 
-    Page<OtpProjection> getCurrentUserOtpOperations(int page, int size);
+    Page<OtpProjection> getCurrentUserOtpOperations(String search, int page, int size);
 
     OtpResponseDTO sendOtp(OtpRequestDTO otpRequest);
 
