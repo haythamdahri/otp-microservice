@@ -22,6 +22,7 @@ import org.technologia.microservices.otp.services.OtpSenderService;
 import org.technologia.microservices.otp.services.OtpService;
 import org.technologia.microservices.otp.services.UserService;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -45,6 +46,17 @@ public class OtpServiceImpl implements OtpService {
         this.otpGenerator = otpGenerator;
         this.dateHelper = dateHelper;
         this.otpSenderService = otpSenderService;
+    }
+
+    @Override
+    @Transactional
+    public Otp getOtp(int id) {
+        return this.otpDAO.findById(id).orElseThrow(() -> new NotFoundException("No OTP Found with id " + id));
+    }
+
+    @Override
+    public Otp getOtpByTransactionNumber(String transactionNumber) {
+        return this.otpDAO.findByTransactionNumber(transactionNumber).orElseThrow(() -> new NotFoundException("No OTP Found!"));
     }
 
     @Override

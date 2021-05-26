@@ -1,5 +1,6 @@
 package org.technologia.microservices.otp.bo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -7,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 /**
  * @author Haytham DAHRI
@@ -18,6 +18,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User extends AbstractEntity implements Serializable {
     private static final long serialVersionUID = -2900462446200152353L;
 
@@ -29,8 +30,5 @@ public class User extends AbstractEntity implements Serializable {
 
     @Column(name = "PASSWORD")
     private String password;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private Set<Otp> otpHistory;
 
 }

@@ -24,8 +24,8 @@ public class ApplicationRunningConfig {
     @EventListener(value = ApplicationReadyEvent.class)
     public void onApplicationStart() {
         // Add mock user if not exists
-        if( this.userDAO.findByUsername("haytham").isEmpty() ) {
-            this.userDAO.save(new User("haytham", "haytham.dahri@gmail.com", this.bCryptPasswordEncoder.encode("Root@toortoor2020"), null));
+        if (this.userDAO.findByUsername("haytham").isEmpty()) {
+            this.userDAO.save(new User("haytham", "haytham.dahri@gmail.com", this.bCryptPasswordEncoder.encode("Root@toortoor2020")));
         }
     }
 
