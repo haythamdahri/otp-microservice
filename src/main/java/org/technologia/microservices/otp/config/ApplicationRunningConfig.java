@@ -25,7 +25,7 @@ public class ApplicationRunningConfig {
     public void onApplicationStart() {
         // Add mock user if not exists
         if (this.userDAO.findByUsername("haytham").isEmpty()) {
-            this.userDAO.save(new User("haytham", "haytham.dahri@gmail.com", this.bCryptPasswordEncoder.encode("Root@toortoor2020")));
+            this.userDAO.save(new User("haytham", "haytham.dahri@gmail.com", this.bCryptPasswordEncoder.encode("OTP@microservice2520")));
         }
     }
 
